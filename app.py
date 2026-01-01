@@ -73,16 +73,16 @@ def book_service():
 
             slot_data = slot_snapshot.to_dict()
 
-            # ❌ Prevent double booking
+            # Prevent double booking
             if slot_data.get("is_booked") is True:
                 raise Exception("Slot already booked")
 
-            # ✅ Mark slot as booked
+            # Mark slot as booked
             transaction.update(slot_ref, {
                 "is_booked": True
             })
 
-            # ✅ Create booking record
+            # Create booking record
             booking_ref = db.collection("bookings").document()
             transaction.set(booking_ref, {
                 "user_name": user_name,
@@ -114,7 +114,7 @@ def book_service():
 # ---------------------------
 @app.route("/", methods=["GET"])
 def home():
-    return jsonify({"status": "Backend is running 🚀"}), 200
+    return jsonify({"status": "Backend is running "}), 200
 
 
 # ---------------------------
